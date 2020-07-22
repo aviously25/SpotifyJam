@@ -15,10 +15,13 @@ export const changeTokens = ({accessToken, refreshToken}) => {
     }
 }
 
-export const changeColors = ({dominant, secondary}) => {
+export const changeColors = (newColorsArr) => {
     return {
         type: "CHANGE_COLORS",
-        payload: {dominant, secondary}
+        payload: {
+            dominant: `rgb(${newColorsArr[0][0]}, ${newColorsArr[0][1]}, ${newColorsArr[0][2]})`,
+            secondary: `rgb(${newColorsArr[1][0]}, ${newColorsArr[1][1]}, ${newColorsArr[1][2]})`
+        }
     }
 }
 
@@ -46,7 +49,7 @@ export const fetchCurrentSong = () => async dispatch => {
     }
     catch(err) {
         if(err.statusCode === 401){
-            const data = await fetch('http://localhost:8888/api/refreshToken?refreshToken='+ spotifyApi.getRefreshToken())
+            const data = await fetch('api/refreshToken?refreshToken='+ spotifyApi.getRefreshToken())
             dispatch(changeTokens(data.data))
         }
         console.log(err)
