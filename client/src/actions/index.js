@@ -1,4 +1,5 @@
 import SpotifyWebApi from 'spotify-web-api-node'
+import axios from 'axios'
 
 const spotifyApi = new SpotifyWebApi()
 
@@ -49,8 +50,11 @@ export const fetchCurrentSong = () => async dispatch => {
     }
     catch(err) {
         if(err.statusCode === 401){
-            const data = await fetch('api/refreshToken?refreshToken='+ spotifyApi.getRefreshToken())
-            dispatch(changeTokens(data.data))
+            const data = await axios.get('http://localhost:5000/api/refreshToken?refreshToken='+ spotifyApi.getRefreshToken())
+            dispatch(changeTokens({
+                accessToken: data.data.access_token, 
+                refreshToken: data.data.refresh_token ? data.data.refresh_token : spotifyApi.getRefreshToken()
+            }))
         }
         console.log(err)
     }

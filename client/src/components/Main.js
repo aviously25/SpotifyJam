@@ -20,13 +20,11 @@ class Main extends React.Component {
     handleImgLoad = async () => {
         const colorThief = new ColorThief()
         const colorsArr = await colorThief.getPalette(this.imgRef.current, 2)
-        console.log(colorsArr)
         this.props.changeColors(colorsArr)
     }
     
     render(){
         const {name, artists=[], key, bpm, ugLink, albumArt} = this.props.currentSong
-        // console.log(artists.join(', '))
 
         return(
             <div id="main">
