@@ -50,7 +50,7 @@ export const fetchCurrentSong = () => async dispatch => {
     }
     catch(err) {
         if(err.statusCode === 401){
-            const data = await axios.get('http://localhost:5000/api/refreshToken?refreshToken='+ spotifyApi.getRefreshToken())
+            const data = await axios.get('/api/refreshToken?refreshToken='+ spotifyApi.getRefreshToken())
             dispatch(changeTokens({
                 accessToken: data.data.access_token, 
                 refreshToken: data.data.refresh_token ? data.data.refresh_token : spotifyApi.getRefreshToken()

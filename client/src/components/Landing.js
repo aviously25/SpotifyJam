@@ -5,7 +5,7 @@ export default class Landing extends React.Component {
     render(){
         return(
             <div id="landing">
-                <a href='http://localhost:5000/api/login'>
+                <a href='/api/login'>
                     <button type="button" className="login" onClick={this.handleClick}>Login to Spotify </button>
                 </a>
             </div>
