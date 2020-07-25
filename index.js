@@ -3,13 +3,15 @@ var querystring = require('querystring')
 var SpotifyWebApi = require('spotify-web-api-node')
 var cookieParser = require('cookie-parser')
 var cors = require('cors')
+var path = require('path')
 require('dotenv').config()
 
 //express app
 var app = express()
 app.use(
     cors(),
-    cookieParser()
+    cookieParser(),
+    express.static(path.join(__dirname, "client", "build"))
 )
 
 //EXPIRED ACCESS TOKEN: BQCrHsUNUNdE3mCNo1ITNx1ulPuFR8BaUxMC7leL39yJ3t23auDM4jTi3DQwpsBNrUKDZNDJNPvzxursjjVlPYs3oFo6f6PETf4aylQxKlrKsQi6VyYMep4dmSIoeJV1WintJztnbA_6xmlbA7K_SL3CVv-ZjX9c
@@ -54,6 +56,11 @@ app.get('/api/refreshToken', (req,res) => {
         res.send(data.body)
     })
 })
+
+//need to serve build files when deploying on heroku
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 //listen on port
 app.listen(process.env.PORT, () => {
