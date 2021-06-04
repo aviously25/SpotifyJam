@@ -1,6 +1,7 @@
 # SpotifyJam
 
-This app provides useful information for musicians about the currently playing spotify song
+This app provides useful information for musicians about the currently playing spotify song.
+
 Find the app at: http://spotify-jam-sesh.herokuapp.com/
 
 Using spotify-web-api-js: https://github.com/jmperez/spotify-web-api-js
