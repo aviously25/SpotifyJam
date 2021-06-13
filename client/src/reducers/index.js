@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 const credentials = (state = {}, action) => {
-    switch (action.type){
+    switch (action.type) {
         case "CHANGE_TOKEN":
             return action.payload
         default:
@@ -9,8 +9,8 @@ const credentials = (state = {}, action) => {
     }
 }
 
-const colors = (state = {dominant: "#f1faee", secondary: "#1d3557", text: "white"}, action) => {
-    switch (action.type){
+const colors = (state = { dominant: "#181818", secondary: "#1DB954", text: "white" }, action) => {
+    switch (action.type) {
         case "CHANGE_COLORS":
             return action.payload
         default:
@@ -19,7 +19,7 @@ const colors = (state = {dominant: "#f1faee", secondary: "#1d3557", text: "white
 }
 
 const currentSong = (state = {}, action) => {
-    switch(action.type){
+    switch (action.type) {
         case "FETCH_SONG":
             return action.payload
         default:
